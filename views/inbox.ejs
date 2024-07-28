@@ -76,7 +76,8 @@
     $("document").ready(function () {
         var username = null;
         var myname = '<%= user %>';
-        var socket = io('http://localhost:7777', {
+        var socket = io('http://localhost:3001', {
+            withCredentials: true,
             query: {
                 username: '<%= user %>'
             }

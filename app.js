@@ -1,5 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
+const cors = require('cors');
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session')
@@ -11,8 +13,15 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+app.use(cors({
+  origin: 'http://localhost:3000', // Replace with your frontend URL
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true
+}));
 
-const chatServer = require('http').createServer(app);
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,10 +42,29 @@ app.use(session({
 }))
 
 
+const chatServer = require('http').createServer(app);
+
 global.users = [];
-const io = require('socket.io')(chatServer);
+// const io = require('socket.io')(chatServer);
+const socketIo = require('socket.io');
+// const server = http.createServer(app);
+
+// Middleware for CORS
+app.use(cors({
+  origin: 'http://localhost:3000',
+}));
+
+// Initialize Socket.IO with CORS support
+const io = socketIo(chatServer, {
+  cors: {
+    origin: "http://localhost:3000",
+  }
+});
+
+
 
 io.use((socket, next) => {
+  // credentials: true;
   let token = socket.handshake.query.username;
   if (token) {
     return next();
@@ -75,7 +103,7 @@ io.on('connection', (client) => {
     name: token
   })
 });
-chatServer.listen(7777);
+chatServer.listen(3001);
 
 
 app.use('/', indexRouter);
