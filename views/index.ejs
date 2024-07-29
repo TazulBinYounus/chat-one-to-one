@@ -2,12 +2,209 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+
+     <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #e5ddd5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .messaging {
+            width: 80%;
+            max-width: 1200px;
+            height: 90vh;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .inbox_people {
+            background: #fff;
+            width: 30%;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+        }
+        .headind_srch {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+        }
+        .recent_heading h4 {
+            color: #075e54;
+        }
+        .srch_bar {
+            display: flex;
+            align-items: center;
+        }
+        .stylish-input-group {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 5px 10px;
+        }
+        .search-bar {
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px;
+            border-radius: 20px;
+        }
+        .input-group-addon button {
+            background: none;
+            border: none;
+            color: #888;
+        }
+        .inbox_chat {
+            padding: 20px;
+        }
+        .chat_list {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+        .chat_list:hover {
+            background: #f1f1f1;
+        }
+        .chat_people {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .chat_img img {
+            width: 50px;
+            border-radius: 50%;
+        }
+        .chat_ib {
+            margin-left: 10px;
+        }
+        .chat_ib h5 {
+            margin: 0;
+            font-size: 1rem;
+            color: #075e54;
+        }
+        .mesgs {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+        }
+        .msg_history {
+            flex-grow: 1;
+            padding: 20px;
+            background: #e5ddd5;
+            overflow-y: auto;
+        }
+        .incoming_msg, .outgoing_msg {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .incoming_msg_img img, .incoming_msg_img img {
+            width: 50px;
+            border-radius: 50%;
+        }
+        .received_msg {
+            margin-left: 10px;
+            max-width: 80%;
+        }
+        .received_withd_msg {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .received_withd_msg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-right: 10px solid #fff;
+            border-bottom: 10px solid transparent;
+        }
+        .outgoing_msg {
+            justify-content: flex-end;
+        }
+        .sent_msg {
+            background: #dcf8c6;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+            max-width: 80%;
+        }
+        .sent_msg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-left: 10px solid #dcf8c6;
+            border-bottom: 10px solid transparent;
+        }
+        .time_date {
+            display: block;
+            color: #777;
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+        .type_msg {
+            padding: 10px;
+            background: #f1f1f1;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #ddd;
+        }
+        .input_msg_write {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        .write_msg {
+            flex-grow: 1;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            outline: none;
+            background: #fff;
+            margin-right: 10px;
+        }
+        .msg_send_btn {
+            background: #075e54;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .msg_send_btn i {
+            font-size: 1rem;
+        }
+    </style>
+
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 
   </head>
   <body class="m-auto">
